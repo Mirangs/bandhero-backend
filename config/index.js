@@ -7,7 +7,7 @@ const config = {
       database: 'heroku_9e77f3396586486',
     }
   },
-  port: process.env.PORT,
+  port: process.env.PORT || 8081,
 }
 
 module.exports = config;
