@@ -7,7 +7,7 @@
     "start": "nodemon server.js",
     "server": "nodemon server.js",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "web": "nodemon server.js"
+    "heroku-postbuild": "cd frontend && npm install && yarn build"
   },
   "author": "Max Berezanskiy",
   "license": "MIT",
