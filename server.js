@@ -34,4 +34,4 @@ app.use('/api/instruments-list', instrumentsListRoute);
 app.use('/api/change-user-data', changeUserDataRoute);
 app.use('/api/register', registerRoute);
 
-app.listen(port, () => console.log(`Listening on port: ${config.port}`));
+app.listen(config.port, () => console.log(`Listening on port: ${config.port}`));
