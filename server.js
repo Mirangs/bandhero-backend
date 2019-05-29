@@ -28,7 +28,7 @@ app.use('/api/instruments-list', instrumentsListRoute);
 app.use('/api/change-user-data', changeUserDataRoute);
 app.use('/api/register', registerRoute);
 
-app.use('/', express.static(__dirname + '/frontend/build'));
+// app.use('/', express.static(__dirname + '/frontend/build'));
 
 db.configure(config.db.mysql);
 app.listen(port, () => console.log(`Listening on port: ${port}`));
