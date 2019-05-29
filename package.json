@@ -7,11 +7,12 @@
     "start": "nodemon server.js",
     "server": "nodemon server.js",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "heroku-postbuild": "cd frontend && npm install && yarn build"
+    "heroku-postbuild": "cd frontend && yarn && yarn build"
   },
   "author": "Max Berezanskiy",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
     "mysql-promise": "^5.0.0",
