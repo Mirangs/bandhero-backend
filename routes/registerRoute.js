@@ -9,7 +9,7 @@ route.post('/', async (req, res) => {
 
   // Validation
   const { error } = registerValidation(body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send(error.details[0]);
 
   const sqlExists = `SELECT EXISTS(SELECT id FROM user_main WHERE email = '${email}' OR login = '${login}' OR phone = '${phone}')`;
 
