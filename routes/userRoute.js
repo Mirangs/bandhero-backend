@@ -1,13 +1,18 @@
 const express = require('express');
 const route = express.Router();
 const executeQuery = require('../libs/db');
-const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
+const dotenv = require('dotenv');
 
-const authUser = (req, res) => {
-  const sql = `SELECT * from user WHERE login = '${req.body.name}'`;
-  executeQuery(sql).spread(user => {
-    const pass = crypto.createHash('md5').update(req.body.pass).digest('hex');
-    if (pass === user[0].pass) {
+dotenv.config();
+
+const authUser = async (req, res) => {
+  const { body: { name, pass } } = req;
+  const sql = `SELECT * from user WHERE login = '${name}'`;
+
+  executeQuery(sql).spread(async user => {
+    const compare = await bcrypt.compareSync(pass, user[0].pass, err => console.log(err));
+    if (compare) {
       res.status(200);
       res.json(user);
     } else {

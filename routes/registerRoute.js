@@ -3,6 +3,9 @@ const route = express.Router();
 const executeQuery = require('../libs/db');
 const bcrypt = require('bcryptjs');
 const { registerValidation } = require('../validation');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 route.post('/', async (req, res) => {
   const { body, body: { login, email, phone, pass } } = req;
@@ -24,7 +27,7 @@ route.post('/', async (req, res) => {
   });
 
   // Hash password
-  const salt = await bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(process.env.SALT);
   const hashedPass = await bcrypt.hash(pass, salt);
 
   const sql = `INSERT INTO user_main (login, pass, email, isPremium, phone) VALUES ('${login}', '${hashedPass}', '${email}', 0, '${phone}')`;
